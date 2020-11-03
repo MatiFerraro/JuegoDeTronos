@@ -1,0 +1,34 @@
+import Personaje.*
+import Casa.*
+
+describe "Test de casamiento" {
+	const diego
+	const licha
+	const tito
+	const lautaro
+	
+	fixture {
+		diego = new Personaje(casa = casaGuardiaDeLaNoche)
+		licha = new Personaje(casa = casaStark)
+		tito = new Personaje(casa = casaStark)
+		lautaro = new Personaje(casa = casaLannister, conyuges = [tito])
+	}
+	
+	test "Diego no se casa con Licha" {
+		assert.that(not diego.sePuedenCasar(licha))
+	}
+	
+	test "Licha no se casa con Diego" {
+		assert.that(not licha.sePuedenCasar(diego))
+	}
+	
+	test "Licha no se casa con Tito" {
+		assert.notThat(licha.sePuedenCasar(tito))
+	}
+	
+	test "Lautaro no se casa con Licha" {
+		assert.notThat(lautaro.sePuedenCasar(licha))
+	}
+	
+	
+}
